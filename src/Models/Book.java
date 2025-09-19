@@ -27,6 +27,20 @@ public class Book {
         this.bookStatus=bookStatus;
     }
 
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", bookName='" + bookName + '\'' +
+                ", publisher='" + publisher + '\'' +
+                ", author='" + author + '\'' +
+                ", price=" + price +
+                ", language='" + language + '\'' +
+                ", category=" + category +
+                ", bookStatus=" + bookStatus +
+                '}';
+    }
+
     public Long getId() {
         return id;
     }

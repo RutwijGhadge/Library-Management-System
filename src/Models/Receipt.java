@@ -1,6 +1,5 @@
 package Models;
 
-import java.security.PublicKey;
 import java.time.LocalDateTime;
 
 public class Receipt {
@@ -9,6 +8,23 @@ public class Receipt {
    public Book book;
    public String libraryName;
    public LocalDateTime timeOfPurchase;
+   public LocalDateTime expectedTimeOfReturn;
+
+    public LocalDateTime getExpectedTimeOfReturn() {
+        return expectedTimeOfReturn;
+    }
+
+    public void setExpectedTimeOfReturn(LocalDateTime expectedTimeOfReturn) {
+        this.expectedTimeOfReturn = expectedTimeOfReturn;
+    }
+
+    public LocalDateTime getTimeOfPurchase() {
+        return timeOfPurchase;
+    }
+
+    public void setTimeOfPurchase(LocalDateTime timeOfPurchase) {
+        this.timeOfPurchase = timeOfPurchase;
+    }
 
     public int getReceiptId() {
         return receiptId;

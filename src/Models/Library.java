@@ -12,6 +12,32 @@ public class Library {
    public String Owner;
    public String ContactNumber;
    public List<Book> bookList;
+   public Librarian librarian;
+   public List<User>users;
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+
+    public Librarian getLibrarian() {
+        return librarian;
+    }
+
+    public void setLibrarian(Librarian librarian) {
+        this.librarian = librarian;
+    }
+
+    public List<Book> getBookList() {
+        return bookList;
+    }
+
+    public void setBookList(List<Book> bookList) {
+        this.bookList = bookList;
+    }
 
     public String getContactNumber() {
         return ContactNumber;

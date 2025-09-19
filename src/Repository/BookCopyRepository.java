@@ -25,12 +25,11 @@ public class BookCopyRepository {
             books.add(book);
             booksCopyRepo.put(book.getBookName(),books);
         }
-        System.out.println("Book Copy Added Successfully");
     }
 
     //get Total Book Copy Count Present
-    public int getBookCopyCount(BookCopy bookCopy){
-       return booksCopyRepo.get(bookCopy.getBookName()).size();
+    public int getBookCopyCount(Book book){
+       return booksCopyRepo.get(book.getBookName()).size();
     }
 
 }

@@ -15,8 +15,6 @@ public class BookRepository {
     private final HashMap<Long,Book> bookRepository;
     private final BookCopyRepository bookCopyRepository= new BookCopyRepository();
 
-    //Id and Book Details
-    private final AtomicLong bookId=new AtomicLong(1);
 
     public BookRepository() {
         this.bookRepository = new HashMap<>();
@@ -24,17 +22,13 @@ public class BookRepository {
 
     public void save(Book book){
         //check if the book id is present or not : if not -> assign book Id and store in repo
-        if(book.getId() == null){
-            book.setId(bookId.getAndDecrement());
-        }
         bookRepository.put(book.getId(),book);
-        bookCopyRepository.addBookCopy(book);
-        System.out.println("Book saved Successfully with id:" +book.getId());
     }
 
     public void saveAll(List<Book>books){
         for(Book book:books){
             save(book);
+            //BookCopy will also get updated
         }
     }
 

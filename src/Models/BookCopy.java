@@ -30,16 +30,4 @@ public class BookCopy {
         return bookName;
     }
 
-    public void setBarcode(String bookName) {
-        this.bookName = bookName;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
 }
