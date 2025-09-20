@@ -27,19 +27,21 @@ User searches for a book
 
 If available → can borrow/purchase.
 
-If unavailable → exception is thrown.
+If unavailable → Message "Book Not Available on Rent".
 
 Issuing a book
 
 Receipt generated.
 
-Copy count reduced.
+Bookcopy count reduced.
 
 Returning a book
 
-Bill is calculated based on usage/rent.
+Bill is calculated based on usage Days/rent.
 
 Copy count updated.
 
 Reminder system
 After 1 month, user gets a reminder if book is not returned.
+
+Bill Calculated Based on the Number of Days it was Rented and also additional rent will be applicable if not returned within specified period.
