@@ -1,6 +1,7 @@
 package DTO;
 
 public class ReceiptResponseDTO {
+    private int receipt_Id;
     private String timeOfPurchase;
     private String timeOfReturn;
     private String bookName;
@@ -9,11 +10,20 @@ public class ReceiptResponseDTO {
     @Override
     public String toString() {
         return "ReceiptResponseDTO {\n" +
+                "  Receipt_Id='" + receipt_Id + "',\n" +
                 "  timeOfPurchase='" + timeOfPurchase + "',\n" +
                 "  timeOfReturn='" + timeOfReturn + "',\n" +
                 "  bookName='" + bookName + "',\n" +
                 "  libraryName='" + libraryName + "'\n" +
                 '}';
+    }
+
+    public int getReceipt_Id() {
+        return receipt_Id;
+    }
+
+    public void setReceipt_Id(int receipt_Id) {
+        this.receipt_Id = receipt_Id;
     }
 
     public String getTimeOfPurchase() {

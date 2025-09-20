@@ -4,7 +4,6 @@ public class Bill {
     public int billId;
     public User user;
     public Book book;
-    public Library library;
     public double amountToBePaid;
 
     public int getBillId() {
@@ -29,14 +28,6 @@ public class Bill {
 
     public void setBook(Book book) {
         this.book = book;
-    }
-
-    public Library getLibrary() {
-        return library;
-    }
-
-    public void setLibrary(Library library) {
-        this.library = library;
     }
 
     public double getAmountToBePaid() {

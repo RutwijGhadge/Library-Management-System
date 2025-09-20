@@ -12,17 +12,16 @@ public class BillRepository {
         this.billRepository = new HashMap<>();
     }
 
-    public Bill getBill(Bill bill){
-        if(!billRepository.containsKey(bill.getBillId())){
-            throw new BillNotPresentException("Bill with id: "+bill.getBillId()+" is not Present");
+    public Bill getBill(int bill_id){
+        if(!billRepository.containsKey(bill_id)){
+            throw new BillNotPresentException("Bill with id: "+bill_id+" is not Present");
         }else {
-            return billRepository.get(bill.getBillId());
+            return billRepository.get(bill_id);
         }
     }
 
     public void addBill(Bill bill){
-        billRepository.put(bill.getBillId(),bill);
-        System.out.println("Bill with Id :"+bill.getBillId()+" added Successfully.");
+        billRepository.put(bill.getBillId(), bill);
     }
 
 }

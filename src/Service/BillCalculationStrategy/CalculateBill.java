@@ -5,6 +5,7 @@ import Models.Receipt;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import java.util.logging.LoggingPermission;
 
 public class CalculateBill implements BillCalculationStrategy{
 
@@ -15,20 +16,28 @@ public class CalculateBill implements BillCalculationStrategy{
     public final double PER_HOUR_DEFAULT_RATE= 2.5;
 
     @Override
-    public double calculateBillAmount(Receipt receipt , LocalDateTime timeOfReturn) {
-        LocalDateTime timeOfPurchase=receipt.timeOfPurchase;
-
+    public double calculateBillAmount(Category category , LocalDateTime timeOfPurchase, LocalDateTime timeOfReturn) {
         long totalNumberOfHours= ChronoUnit.HOURS.between(timeOfPurchase,timeOfReturn);
-        Category category=receipt.getBook().getCategory();
-        if(category.equals(Category.EDUCATION)){
-            return totalNumberOfHours*PER_HOUR_RENT_EDUCATION;
-        }else if(category.equals(Category.DRAMA)){
-            return totalNumberOfHours*PER_HOUR_DRAMA;
-        }else if(category.equals(Category.FICTION)){
-            return totalNumberOfHours*PER_HOUR_FICTION;
-        }else if(category.equals(Category.ROMANCE)){
-            return totalNumberOfHours*PER_HOUR_RENT_ROMANCE;
+        double base_cost=baseCost(category,totalNumberOfHours);
+
+        //Monthly Penalty will be 500 rs
+        if (totalNumberOfHours > 720){
+            base_cost+=((double) totalNumberOfHours / 720) * 500;
         }
-        return totalNumberOfHours*PER_HOUR_DEFAULT_RATE;
+        return base_cost;
+    }
+
+    public double baseCost(Category category , long totalNumberOfHours) {
+        if (category.equals(Category.EDUCATION)) {
+            return totalNumberOfHours * PER_HOUR_RENT_EDUCATION;
+        } else if (category.equals(Category.DRAMA)) {
+            return totalNumberOfHours * PER_HOUR_DRAMA;
+        } else if (category.equals(Category.FICTION)) {
+            return totalNumberOfHours * PER_HOUR_FICTION;
+        } else if (category.equals(Category.ROMANCE)) {
+            return totalNumberOfHours * PER_HOUR_RENT_ROMANCE;
+        } else {
+            return  totalNumberOfHours * PER_HOUR_DEFAULT_RATE;
+        }
     }
 }

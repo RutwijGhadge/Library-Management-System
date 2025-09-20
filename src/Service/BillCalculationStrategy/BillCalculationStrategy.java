@@ -1,10 +1,11 @@
 package Service.BillCalculationStrategy;
 
 import Models.Book;
+import Models.Constants.Category;
 import Models.Receipt;
 
 import java.time.LocalDateTime;
 
 public interface BillCalculationStrategy {
-    public double calculateBillAmount(Receipt receipt, LocalDateTime timeOfReturn);
+    double calculateBillAmount(Category category , LocalDateTime timeOfPurchase, LocalDateTime timeOfReturn);
 }

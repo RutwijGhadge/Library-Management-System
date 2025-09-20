@@ -1,10 +1,9 @@
 package Controller;
 import DTO.ReceiptRequestDTO;
 import DTO.ReceiptResponseDTO;
-import Models.Bill;
 import Models.Receipt;
 import Repository.*;
-import Service.ReceiptServiceIMPL;
+import Service.ReceiptService.ReceiptServiceIMPL;
 import Exception.UserNotPresentException;
 
 public class ReceiptController {
@@ -14,19 +13,25 @@ public class ReceiptController {
         this.receiptServiceIMPL=new ReceiptServiceIMPL(bookRepository,userRepository,receiptRepository);
     }
 
-    public ReceiptResponseDTO createReceipt(ReceiptRequestDTO receiptRequestDTO) throws UserNotPresentException {
-        Receipt receipt=receiptServiceIMPL.createReceipt(receiptRequestDTO.getUserId(),receiptRequestDTO.getBookId(),receiptRequestDTO.getLibraryName());
+    public void createReceipt(ReceiptRequestDTO receiptRequestDTO) throws UserNotPresentException {
+        receiptServiceIMPL.createReceipt(receiptRequestDTO.getUserId(),receiptRequestDTO.getBookId(),receiptRequestDTO.getLibraryName());
+    }
 
-        ReceiptResponseDTO receiptResponseDTO=new ReceiptResponseDTO();
+    public ReceiptResponseDTO getReceipt(int receiptId){
+        Receipt receipt = receiptServiceIMPL.getReceipt(receiptId);
+        return getResponseDTOFromReceipt(receipt);
+    }
+
+    public ReceiptResponseDTO getResponseDTOFromReceipt(Receipt receipt){
+        ReceiptResponseDTO receiptResponseDTO = new ReceiptResponseDTO();
         receiptResponseDTO.setBookName(receipt.getBook().getBookName());
         receiptResponseDTO.setLibraryName(receipt.getLibraryName());
         receiptResponseDTO.setTimeOfPurchase(receipt.getTimeOfPurchase().toString());
+        receiptResponseDTO.setReceipt_Id(receipt.getReceiptId());
         receiptResponseDTO.setTimeOfReturn(receipt.getExpectedTimeOfReturn().toString());
         return receiptResponseDTO;
     }
-
 }
-
 
 
 /*

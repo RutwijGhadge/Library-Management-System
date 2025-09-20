@@ -13,14 +13,13 @@ public class ReceiptRepository {
     }
 
     public Receipt getReceipt(int id) throws ReceiptNotFoundException {
-        if(!receiptRepository.containsKey(id)){
-            throw new ReceiptNotFoundException("Receipt with id :"+id+ " Not Present");
+        if(!receiptRepository.containsKey(id)) {
+            throw new ReceiptNotFoundException("Receipt with id :" + id + " Not Present.");
         }
         return receiptRepository.get(id);
     }
 
-    public Receipt addReceipt(Receipt receipt)  {
+    public void addReceipt(Receipt receipt)  {
         receiptRepository.put(receipt.receiptId,receipt);
-        return receipt;
     }
 }

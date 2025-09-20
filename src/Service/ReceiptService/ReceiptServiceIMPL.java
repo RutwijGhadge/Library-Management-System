@@ -1,6 +1,7 @@
-package Service;
+package Service.ReceiptService;
 
 import Exception.UserNotPresentException;
+import Exception.ReceiptNotFoundException;
 import Models.Book;
 import Models.Receipt;
 import Models.User;
@@ -8,7 +9,7 @@ import Repository.*;
 
 import java.time.LocalDateTime;
 
-public class ReceiptServiceIMPL implements ReceiptService{
+public class ReceiptServiceIMPL implements ReceiptService {
     private final UserRepository userRepository;
     private final BookRepository bookRepository;
     private final ReceiptRepository receiptRepository;
@@ -26,7 +27,7 @@ public class ReceiptServiceIMPL implements ReceiptService{
     }
 
     @Override
-    public Receipt createReceipt(int userId, int bookId, String libraryName) throws UserNotPresentException {
+    public void createReceipt(int userId, int bookId, String libraryName) throws UserNotPresentException {
         User user= userRepository.getUser(userId);
         Book book= bookRepository.findById((long) bookId);
 
@@ -37,6 +38,15 @@ public class ReceiptServiceIMPL implements ReceiptService{
         new_receipt.setLibraryName(libraryName);
         new_receipt.setTimeOfPurchase(LocalDateTime.now());
         new_receipt.setExpectedTimeOfReturn(LocalDateTime.now().plusMonths(1L)); //return after 1 Month
-        return receiptRepository.addReceipt(new_receipt);
+        receiptRepository.addReceipt(new_receipt);
+    }
+
+    @Override
+    public Receipt getReceipt(int receiptId){
+        try {
+            return receiptRepository.getReceipt(receiptId);
+        } catch (ReceiptNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
